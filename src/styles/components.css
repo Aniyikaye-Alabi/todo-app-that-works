@@ -1,0 +1,724 @@
+/* Reusable primitives — style guide §5. */
+
+/* ── Typography helpers ── */
+.h1 {
+  font: 700 var(--fs-2xl) / var(--lh-tight) var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text);
+  text-shadow: var(--glow-text);
+  overflow-wrap: anywhere;
+}
+
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+
+.lede {
+  max-width: var(--reading-max);
+  color: var(--text-dim);
+  margin-top: var(--sp-2);
+}
+
+.hint {
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+}
+
+.hint--warn,
+.warn-text {
+  color: var(--warn);
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  stroke-width: 1.5;
+  flex: none;
+}
+
+.kbd {
+  display: inline-block;
+  padding: 0 var(--sp-1);
+  border: var(--border-w) solid currentColor;
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+/* ── Panel (§5.1) ── */
+.panel {
+  position: relative;
+  background: var(--bg-panel);
+  border: var(--border-w) solid var(--border);
+  padding: var(--sp-5) var(--sp-4) var(--sp-4);
+  transition:
+    border-color var(--dur-base) var(--ease),
+    box-shadow var(--dur-base) var(--ease);
+}
+
+.panel__title {
+  position: absolute;
+  top: -0.75em;
+  left: var(--sp-3);
+  max-width: calc(100% - 120px);
+  padding: 0 var(--sp-2);
+  background: var(--bg-panel);
+  color: var(--text-dim);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.panel__meta {
+  position: absolute;
+  top: -0.75em;
+  right: var(--sp-3);
+  padding: 0 var(--sp-2);
+  background: var(--bg-panel);
+  color: var(--text-mute);
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.panel:focus-within {
+  border-color: var(--border-hi);
+  box-shadow: var(--glow-sm);
+}
+
+.panel--cut {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut)) 0,
+    100% var(--cut),
+    100% 100%,
+    var(--cut) 100%,
+    0 calc(100% - var(--cut))
+  );
+}
+
+/* ── Button (§5.2) ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  font: 600 var(--fs-sm) / 1 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--accent);
+  background: transparent;
+  border: var(--border-w) solid var(--accent);
+  border-radius: var(--radius);
+  padding: var(--sp-2) var(--sp-4);
+  min-height: 36px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease);
+}
+
+.btn::before {
+  content: '[';
+}
+
+.btn::after {
+  content: ']';
+}
+
+.btn:hover {
+  background: var(--accent);
+  color: var(--text-invert);
+  box-shadow: var(--glow);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  color: var(--text-mute);
+  border-style: dashed;
+  border-color: var(--border);
+  background: transparent;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn--solid {
+  background: var(--accent);
+  color: var(--text-invert);
+}
+
+.btn--solid:hover {
+  box-shadow: var(--glow);
+}
+
+.btn--ghost {
+  border-color: transparent;
+  color: var(--text-dim);
+}
+
+.btn--ghost:hover {
+  background: var(--bg-hover);
+  color: var(--accent);
+  box-shadow: none;
+}
+
+.btn--danger {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: transparent;
+}
+
+.btn--danger:hover {
+  background: var(--danger);
+  color: var(--text-invert);
+  box-shadow: var(--glow-danger);
+}
+
+.btn--sm {
+  font-size: var(--fs-xs);
+  padding: var(--sp-1) var(--sp-3);
+  min-height: 28px;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  color: var(--text-dim);
+  border: var(--border-w) solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.icon-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.5;
+}
+
+.icon-btn:hover {
+  color: var(--accent);
+  border-color: var(--border-hi);
+}
+
+.icon-btn:active {
+  transform: translateY(1px);
+}
+
+.icon-btn:disabled {
+  color: var(--text-mute);
+  cursor: not-allowed;
+}
+
+.icon-btn--danger:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* ── Inputs (§5.3) ── */
+.form {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+.field {
+  display: grid;
+  gap: var(--sp-1);
+}
+
+.field__label {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  padding: 0;
+}
+
+.field__control {
+  position: relative;
+}
+
+.field__control::before {
+  content: '>';
+  position: absolute;
+  left: var(--sp-3);
+  top: var(--sp-2);
+  color: var(--accent);
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  background: var(--bg-inset);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-6);
+  color: var(--text);
+  caret-color: var(--accent);
+  line-height: var(--lh-body);
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease);
+}
+
+textarea.input {
+  resize: vertical;
+}
+
+.input::placeholder {
+  color: var(--text-mute);
+}
+
+.input:hover {
+  border-color: var(--text-mute);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--border-hi);
+  box-shadow: var(--glow-sm);
+}
+
+.input:disabled {
+  color: var(--text-mute);
+  border-style: dashed;
+  cursor: not-allowed;
+}
+
+.input::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+  cursor: pointer;
+}
+
+.field--error .input {
+  border-color: var(--danger);
+}
+
+.field__error {
+  font-size: var(--fs-xs);
+  color: var(--danger);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Checkbox & radio (§5.5) — real inputs, visually replaced ── */
+.checkbox,
+.radio {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-size: var(--fs-xs);
+}
+
+.checkbox input,
+.radio input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.checkbox__box::before {
+  content: '[ ]';
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+  white-space: pre;
+}
+
+.checkbox input:checked + .checkbox__box::before {
+  content: '[x]';
+  color: var(--accent);
+  text-shadow: var(--glow-text);
+}
+
+.radio__box::before {
+  content: '( )';
+  color: var(--text-dim);
+  white-space: pre;
+}
+
+.radio input:checked + .radio__box::before {
+  content: '(•)';
+  color: var(--accent);
+  text-shadow: var(--glow-text);
+}
+
+.checkbox input:focus-visible + .checkbox__box,
+.radio input:focus-visible + .radio__box {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+.checkbox:hover .checkbox__box::before,
+.radio:hover .radio__box::before {
+  color: var(--accent);
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-5);
+  padding-top: var(--sp-1);
+}
+
+/* ── Chips (duration presets) ── */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: calc(var(--sp-2) * -1);
+}
+
+.chip {
+  background: var(--bg-inset);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-dim);
+  padding: var(--sp-1) var(--sp-3);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-label);
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--border-hi);
+  color: var(--accent);
+}
+
+.chip:active {
+  transform: translateY(1px);
+}
+
+.chip.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-invert);
+}
+
+/* ── Progress (§5.6) ── */
+.progress {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.progress__bar {
+  letter-spacing: -0.05em;
+  color: var(--text-dim);
+}
+
+.progress__fill {
+  color: var(--accent);
+  text-shadow: var(--glow-text);
+}
+
+.progress__empty {
+  color: var(--text-mute);
+}
+
+.progress--warn .progress__fill {
+  color: var(--warn);
+}
+
+.progress--danger .progress__fill {
+  color: var(--danger);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.progress__value {
+  color: var(--text-dim);
+  min-width: 4ch;
+  text-align: right;
+}
+
+/* ── Tags (status is never colour alone: always text) ── */
+.tag {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tag--active,
+.tag--cleared {
+  color: var(--success);
+}
+
+.tag--upcoming {
+  color: var(--accent-2);
+}
+
+.tag--overdue {
+  color: var(--warn);
+}
+
+.tag--prio-low {
+  color: var(--text-dim);
+}
+
+.tag--prio-med {
+  color: var(--accent-2);
+}
+
+.tag--prio-high {
+  color: var(--danger);
+}
+
+.tag--prio-low::before,
+.tag--prio-med::before,
+.tag--prio-high::before {
+  content: '◆ ';
+}
+
+/* ── Modal (§5.10) ── */
+.modal__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: var(--backdrop);
+  animation: fade-in var(--dur-base) var(--ease);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: var(--z-modal);
+  transform: translate(-50%, -50%);
+  width: min(560px, calc(100vw - var(--sp-5)));
+  max-height: calc(100dvh - var(--sp-6));
+  overflow-y: auto;
+  display: grid;
+  gap: var(--sp-4);
+  padding: var(--sp-5);
+  background: var(--bg-panel);
+  border: var(--border-w) solid var(--border-hi);
+  box-shadow: var(--glow);
+  animation: power-on var(--dur-slow) var(--ease);
+}
+
+.modal:focus {
+  outline: none;
+}
+
+.modal--lg {
+  width: min(680px, calc(100vw - var(--sp-5)));
+}
+
+.modal--alert {
+  width: min(480px, calc(100vw - var(--sp-5)));
+  border-color: var(--danger);
+  box-shadow: var(--glow-danger);
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.modal__title {
+  font: 600 var(--fs-lg) / var(--lh-tight) var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--accent);
+  text-shadow: var(--glow-text);
+}
+
+.modal__title--danger {
+  color: var(--danger);
+  text-shadow: none;
+}
+
+.modal__body {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.modal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--sp-3);
+  padding-top: var(--sp-2);
+}
+
+/* ── Tooltip (§5.13) ── */
+.tooltip {
+  z-index: var(--z-toast);
+  background: var(--bg-inset);
+  border: var(--border-w) solid var(--border-hi);
+  color: var(--text);
+  font-size: var(--fs-xs);
+  padding: var(--sp-1) var(--sp-2);
+  animation: fade-in var(--dur-fast) var(--ease);
+}
+
+/* ── Table (§5.8) ── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.table th {
+  text-align: left;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  border-bottom: var(--border-w) solid var(--border);
+  padding: var(--sp-2);
+}
+
+.table td {
+  padding: var(--sp-2);
+}
+
+.table tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--bg-hover) 50%, transparent);
+}
+
+/* ── Toasts (§5.11) ── */
+.toaster {
+  position: fixed;
+  top: calc(var(--statusbar-h) + var(--sp-3));
+  right: var(--sp-3);
+  z-index: var(--z-toast);
+  display: grid;
+  gap: var(--sp-2);
+  width: min(380px, calc(100vw - var(--sp-5)));
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-2) var(--sp-2) var(--sp-3);
+  background: var(--bg-panel);
+  border: var(--border-w) solid var(--border);
+  border-left: 3px solid var(--accent-2);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  animation: fade-in var(--dur-base) var(--ease);
+}
+
+.toast__msg {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.toast--ok {
+  border-left-color: var(--success);
+}
+
+.toast--ok .toast__tag {
+  color: var(--success);
+}
+
+.toast--warn {
+  border-left-color: var(--warn);
+}
+
+.toast--warn .toast__tag {
+  color: var(--warn);
+}
+
+.toast--err {
+  border-left-color: var(--danger);
+}
+
+.toast--err .toast__tag {
+  color: var(--danger);
+}
+
+.toast--info .toast__tag {
+  color: var(--accent-2);
+}
+
+/* ── Empty states ── */
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-8) var(--sp-4);
+  text-align: center;
+  border: var(--border-w) dashed var(--border);
+}
+
+.empty--inline {
+  padding: var(--sp-6) var(--sp-4);
+}
+
+.empty__mark {
+  opacity: 0.8;
+}
+
+.empty__title {
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-weight: 600;
+}
+
+.empty__body {
+  max-width: 48ch;
+  color: var(--text-dim);
+}
+
+@media (max-width: 720px) {
+  .form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .h1 {
+    font-size: var(--fs-xl);
+  }
+}

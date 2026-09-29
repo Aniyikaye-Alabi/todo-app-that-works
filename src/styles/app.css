@@ -1,0 +1,684 @@
+/* App shell and feature layouts. */
+
+/* ── Status bar (§5.12) ── */
+.statusbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-dropdown);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  height: var(--statusbar-h);
+  padding: 0 var(--sp-4);
+  background: var(--bg-panel);
+  border-bottom: var(--border-w) solid var(--border);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+
+.statusbar__brand,
+.statusbar__items {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-width: 0;
+}
+
+.statusbar__name {
+  font: 700 var(--fs-md) / 1 var(--font-display);
+  color: var(--accent);
+  text-shadow: var(--glow-text);
+}
+
+.statusbar__sys {
+  color: var(--success);
+}
+
+.statusbar__item {
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.statusbar__item + .statusbar__item::before,
+.statusbar__clock::before {
+  content: '│ ';
+  color: var(--text-mute);
+}
+
+.focus-chip {
+  font: 600 var(--fs-xs) / 1 var(--font-mono);
+  letter-spacing: var(--tracking-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-invert);
+  background: var(--accent);
+  border: 0;
+  padding: var(--sp-1) var(--sp-2);
+  cursor: pointer;
+  box-shadow: var(--glow-sm);
+}
+
+.focus-chip::before {
+  content: '◆ ';
+}
+
+.focus-chip--break {
+  background: var(--accent-2);
+}
+
+.focus-chip:hover {
+  box-shadow: var(--glow);
+}
+
+/* ── Main layout ── */
+.main {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--sp-6) var(--sp-4) var(--sp-7);
+}
+
+.footer {
+  text-align: center;
+  padding: var(--sp-4);
+  color: var(--text-mute);
+  font-size: var(--fs-xs);
+}
+
+.view {
+  display: grid;
+  gap: var(--sp-6);
+}
+
+.view__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}
+
+.view__header > div:first-child {
+  display: grid;
+  gap: var(--sp-2);
+  justify-items: start;
+  min-width: 0;
+}
+
+.view__header-actions {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--sp-5) var(--sp-4);
+}
+
+/* ── List card ── */
+.list-card {
+  display: grid;
+  gap: var(--sp-3);
+  align-content: start;
+}
+
+.list-card:hover {
+  border-color: var(--border-hi);
+}
+
+.list-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.list-card__deadline {
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  letter-spacing: var(--tracking-label);
+}
+
+.list-card__desc {
+  color: var(--text-dim);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.list-card__dates {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+
+.list-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding-top: var(--sp-2);
+}
+
+.list-card__actions .btn {
+  margin-right: auto;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+  padding: var(--sp-3) 0;
+  border-top: var(--border-w) solid var(--border);
+  border-bottom: var(--border-w) solid var(--border);
+}
+
+.stats dt {
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+
+.stats dd {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.stats--stack {
+  grid-template-columns: 1fr;
+  border: 0;
+}
+
+.stats--stack dd {
+  font-size: var(--fs-sm);
+}
+
+/* ── List view ── */
+.list-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: var(--sp-4);
+  align-items: start;
+}
+
+.list-layout__side {
+  display: grid;
+  gap: var(--sp-4);
+  position: sticky;
+  top: calc(var(--statusbar-h) + var(--sp-4));
+}
+
+.list-layout__side .panel {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+
+.task-list {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.task {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  background: var(--bg-inset);
+  border: var(--border-w) solid var(--border);
+  position: relative;
+}
+
+.task:hover {
+  background: var(--bg-hover);
+}
+
+.task.is-dragging {
+  z-index: var(--z-panel);
+  border-color: var(--border-hi);
+  box-shadow: var(--glow);
+  opacity: 0.9;
+}
+
+.task.is-focusing {
+  border-color: var(--border-hi);
+  box-shadow: var(--glow-sm);
+}
+
+.task.is-focusing::before {
+  content: '▶';
+  position: absolute;
+  left: calc(var(--sp-3) * -1);
+  top: var(--sp-3);
+  color: var(--accent);
+  font-size: var(--fs-xs);
+}
+
+.task__handle {
+  cursor: grab;
+  touch-action: none;
+}
+
+.task__handle:active {
+  cursor: grabbing;
+}
+
+.task__check {
+  padding-top: var(--sp-1);
+}
+
+.task__body {
+  display: grid;
+  gap: var(--sp-1);
+  min-width: 0;
+}
+
+.task__title {
+  font-size: var(--fs-md);
+  overflow-wrap: anywhere;
+}
+
+.task__index {
+  color: var(--text-mute);
+  margin-right: var(--sp-2);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.task__notes {
+  color: var(--text-dim);
+  font-size: var(--fs-xs);
+  white-space: pre-wrap;
+}
+
+.task__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+}
+
+.task__duration {
+  font-variant-numeric: tabular-nums;
+}
+
+.task__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.task.is-done .task__title {
+  color: var(--text-mute);
+  text-decoration: line-through;
+}
+
+.task.is-done .task__title::after {
+  content: ' [OK]';
+  color: var(--success);
+  font-size: var(--fs-xs);
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* ── Focus plan strip ── */
+.plan {
+  display: grid;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  background: var(--bg-inset);
+  border: var(--border-w) dashed var(--border);
+}
+
+.phase-strip {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  min-height: 28px;
+}
+
+.phase-strip__seg {
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+}
+
+.phase-strip__seg--focus {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  border: var(--border-w) solid var(--accent);
+  color: var(--accent);
+}
+
+.phase-strip__seg--break {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0 3px,
+    color-mix(in srgb, var(--accent-2) 25%, transparent) 3px 5px
+  );
+  border: var(--border-w) solid var(--accent-2);
+  color: var(--accent-2);
+}
+
+.phase-strip__seg.is-done {
+  opacity: 0.35;
+}
+
+.phase-strip__seg.is-active {
+  background: var(--accent);
+  color: var(--text-invert);
+  box-shadow: var(--glow);
+}
+
+.phase-strip__seg--break.is-active {
+  background: var(--accent-2);
+}
+
+/* Hide labels on very narrow segments rather than overflowing. */
+.phase-strip__label {
+  white-space: nowrap;
+}
+
+/* ── Focus session overlay ── */
+.focus__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: var(--bg);
+  animation: fade-in var(--dur-slow) var(--ease);
+}
+
+.focus {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: var(--z-modal);
+  transform: translate(-50%, -50%);
+  width: min(760px, calc(100vw - var(--sp-5)));
+  max-height: calc(100dvh - var(--sp-5));
+  overflow-y: auto;
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-6) var(--sp-5);
+  text-align: center;
+  background: var(--bg-panel);
+  border: var(--border-w) solid var(--border-hi);
+  box-shadow: var(--glow);
+  animation: power-on var(--dur-slow) var(--ease);
+}
+
+.focus:focus {
+  outline: none;
+}
+
+.focus--break {
+  border-color: var(--accent-2);
+}
+
+.focus__header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.focus__task {
+  font: 700 var(--fs-xl) / var(--lh-tight) var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  overflow-wrap: anywhere;
+}
+
+.focus__phase {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--accent);
+}
+
+.focus--break .focus__phase {
+  color: var(--accent-2);
+}
+
+.focus__clock {
+  font: 700 var(--fs-clock) / 1 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  text-shadow: var(--glow);
+  letter-spacing: -0.02em;
+}
+
+.focus--break .focus__clock {
+  color: var(--accent-2);
+}
+
+.focus .phase-strip {
+  max-width: 560px;
+}
+
+.focus__controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-3);
+}
+
+.focus__done {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-4) 0;
+}
+
+.focus__done-icon {
+  width: 72px;
+  height: 72px;
+  stroke-width: 1.5;
+  color: var(--success);
+  filter: drop-shadow(0 0 8px var(--success));
+}
+
+[data-theme='clean'] .focus__done-icon {
+  filter: none;
+}
+
+/* ── Command palette (cmdk) ── */
+.palette__content {
+  position: fixed;
+  top: 18vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-modal);
+  width: min(600px, calc(100vw - var(--sp-5)));
+  background: var(--bg-panel);
+  border: var(--border-w) solid var(--border-hi);
+  box-shadow: var(--glow);
+  animation: fade-in var(--dur-base) var(--ease);
+}
+
+.palette__input-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: var(--border-w) solid var(--border);
+}
+
+.palette__prompt {
+  color: var(--accent);
+}
+
+.palette__input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  caret-color: var(--accent);
+  font-size: var(--fs-md);
+}
+
+.palette__input::placeholder {
+  color: var(--text-mute);
+}
+
+.palette__list {
+  max-height: min(420px, 60vh);
+  overflow-y: auto;
+  padding: var(--sp-2);
+}
+
+.palette [cmdk-group-heading] {
+  padding: var(--sp-2) var(--sp-2) var(--sp-1);
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+
+.palette [cmdk-item] {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  cursor: pointer;
+  color: var(--text);
+}
+
+.palette [cmdk-item] svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 1.5;
+  color: var(--text-dim);
+}
+
+.palette [cmdk-item][data-selected='true'] {
+  background: var(--accent);
+  color: var(--text-invert);
+}
+
+.palette [cmdk-item][data-selected='true']::before {
+  content: '▶';
+}
+
+.palette [cmdk-item][data-selected='true'] svg {
+  color: var(--text-invert);
+}
+
+.palette [cmdk-item][data-disabled='true'] {
+  color: var(--text-mute);
+  cursor: not-allowed;
+}
+
+.palette__empty {
+  padding: var(--sp-5);
+  text-align: center;
+  color: var(--text-mute);
+}
+
+.palette__current {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+}
+
+/* ── Boot sequence (§6.4) ── */
+.boot {
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  justify-items: start;
+  gap: var(--sp-5);
+  padding: var(--sp-5);
+  cursor: pointer;
+}
+
+.boot__logo {
+  width: min(360px, 80vw);
+  height: auto;
+}
+
+.boot__log {
+  font: 400 var(--fs-sm) / var(--lh-body) var(--font-mono);
+  color: var(--accent);
+  text-shadow: var(--glow-text);
+  min-height: calc(var(--fs-sm) * var(--lh-body) * 5);
+  white-space: pre-wrap;
+}
+
+.boot__skip {
+  position: fixed;
+  right: var(--sp-4);
+  bottom: var(--sp-4);
+}
+
+/* ── Responsive (§4) ── */
+@media (max-width: 960px) {
+  .list-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .list-layout__side {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 720px) {
+  .main {
+    padding: var(--sp-5) var(--sp-3) var(--sp-6);
+  }
+
+  .statusbar {
+    padding: 0 var(--sp-3);
+  }
+
+  .statusbar__sys,
+  .statusbar__item--hide-sm,
+  .statusbar__cmd .kbd {
+    display: none;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .task {
+    grid-template-columns: auto auto minmax(0, 1fr);
+  }
+
+  .task__actions {
+    grid-column: 3;
+    justify-self: start;
+  }
+
+  .focus {
+    padding: var(--sp-5) var(--sp-3);
+  }
+}

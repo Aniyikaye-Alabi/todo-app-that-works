@@ -1,0 +1,43 @@
+# ── Dependencies ──
+node_modules/
+
+# ── Build & test output ──
+dist/
+coverage/
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+
+# ── Caches ──
+*.tsbuildinfo
+.eslintcache
+.vite/
+
+# ── Logs ──
+*.log
+npm-debug.log*
+
+# ── Secrets & private config ──
+.env
+.env.*
+!.env.example
+*.local
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+.npmrc
+
+# ── AI agent config & docs (kept locally, not published) ──
+.claude/
+*.md
+!README.md
+
+# ── Editor / OS ──
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,6 @@
+dist
+coverage
+assets
+public
+package-lock.json
+TERMINAL_UI_STYLE_GUIDE.md

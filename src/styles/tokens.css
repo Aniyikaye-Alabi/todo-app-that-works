@@ -1,0 +1,127 @@
+/* Design tokens — mirror of TERMINAL_UI_STYLE_GUIDE.md §2. Components MUST NOT hard-code values. */
+
+:root {
+  /* ── Surfaces ── */
+  --bg: #0a0e0d;
+  --bg-panel: #0f1614;
+  --bg-inset: #070a09;
+  --bg-hover: #14201c;
+  --border: #1f3a32;
+  --border-hi: #2fae7a;
+  --backdrop: rgb(0 0 0 / 0.7);
+
+  /* ── Text ── */
+  --text: #c8f5dc;
+  --text-dim: #6b9c86;
+  --text-mute: #3d5c50;
+  --text-invert: #0a0e0d;
+
+  /* ── Accent & status ── */
+  --accent: #39ff9f;
+  --accent-2: #00e5ff;
+  --success: #39ff9f;
+  --warn: #ffb000;
+  --danger: #ff3b5c;
+
+  /* ── Effects ── */
+  --glow: 0 0 6px rgb(57 255 159 / 0.55), 0 0 18px rgb(57 255 159 / 0.25);
+  --glow-sm: 0 0 4px rgb(57 255 159 / 0.5);
+  --glow-text: 0 0 4px rgb(57 255 159 / 0.6);
+  --glow-danger: 0 0 6px rgb(255 59 92 / 0.6);
+  --scanline-opacity: 0.04;
+
+  /* ── Typography ── */
+  --font-mono:
+    'JetBrains Mono', 'IBM Plex Mono', 'Fira Code', ui-monospace, Menlo, Consolas, monospace;
+  --font-display: 'Chakra Petch', 'Rajdhani', var(--font-mono);
+
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-md: 16px;
+  --fs-lg: 20px;
+  --fs-xl: 28px;
+  --fs-2xl: 40px;
+  --fs-clock: clamp(64px, 16vw, 144px);
+
+  --lh-tight: 1.2;
+  --lh-body: 1.55;
+  --tracking-label: 0.12em;
+
+  /* ── Spacing (4px grid) ── */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+
+  /* ── Shape ── */
+  --radius: 0px;
+  --border-w: 1px;
+  --cut: 10px;
+
+  /* ── Motion ── */
+  --dur-fast: 100ms;
+  --dur-base: 180ms;
+  --dur-slow: 300ms;
+  --ease: steps(4, end);
+  --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* ── Layers ── */
+  --z-base: 0;
+  --z-panel: 10;
+  --z-dropdown: 100;
+  --z-modal: 1000;
+  --z-toast: 1100;
+  --z-overlay: 9999;
+
+  /* ── Layout ── */
+  --statusbar-h: 44px;
+  --content-max: 1280px;
+  --reading-max: 72ch;
+
+  color-scheme: dark;
+}
+
+[data-theme='amber'] {
+  --accent: #ffb000;
+  --accent-2: #ffd580;
+  --success: #9cff57;
+  --border: #3a2e12;
+  --border-hi: #c98a00;
+  --text: #ffe6b3;
+  --text-dim: #a8864a;
+  --text-mute: #5c4a28;
+  --glow: 0 0 6px rgb(255 176 0 / 0.55), 0 0 18px rgb(255 176 0 / 0.25);
+  --glow-sm: 0 0 4px rgb(255 176 0 / 0.5);
+  --glow-text: 0 0 4px rgb(255 176 0 / 0.6);
+}
+
+[data-theme='cyberpunk'] {
+  --bg: #0a0a12;
+  --bg-panel: #10101c;
+  --bg-inset: #06060c;
+  --bg-hover: #181828;
+  --accent: #00f0ff;
+  --accent-2: #ff2bd6;
+  --success: #39ff9f;
+  --border: #22223a;
+  --border-hi: #00b8c4;
+  --text: #d6f7ff;
+  --text-dim: #7a8fb0;
+  --text-mute: #3e4660;
+  --glow: 0 0 6px rgb(0 240 255 / 0.55), 0 0 18px rgb(255 43 214 / 0.2);
+  --glow-sm: 0 0 4px rgb(0 240 255 / 0.5);
+  --glow-text: 0 0 4px rgb(0 240 255 / 0.6);
+}
+
+/* Minimal-effects mode; also the accessibility fallback. */
+[data-theme='clean'] {
+  --glow: none;
+  --glow-sm: none;
+  --glow-text: none;
+  --glow-danger: none;
+  --scanline-opacity: 0;
+}
